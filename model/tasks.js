@@ -60,14 +60,27 @@ Task.prototype.updateTask = function (payload, cb) {
 
 Task.importTasks = function() {
   let tasksArray = JSON.parse(fs.readFileSync('./data/data.json', 'utf-8'));
-  ASYNC.forEachSeries(tasksArray, function (taskObj, inCB) {
-     taskObj.submittedDate = moment.utc(taskObj.submittedDate.split("  ").join("")).format("YYYY-MM-DDTHH:mm:ss");
-     taskObj.modifiedDate = moment.utc(taskObj.modifiedDate.split("  ").join("")).format("YYYY-MM-DDTHH:mm:ss");
-     taskObj._id = miscUtils.generateMongoID();
-     mongoClient.insertOne(strings.COLLECTIONS.TASKS, taskObj, inCB)
-  },function (e, r) {
-    mongoClient.createIndex('tasks',{"feature":"text", "submittedBy": "text", "description": "text"});
-    console.log("IMPORT DONE!!")
-  });
+  ASYNC.waterfall([
+    function (callback) {
+      mongoClient.createIndex('tasks',{"feature":"text", "submittedBy": "text", "description": "text"},callback);
+    },
+    function (result, callback) {
+      ASYNC.forEachSeries(tasksArray, function (taskObj, inCB) {
+        taskObj.submittedDate = moment.utc(taskObj.submittedDate.split("  ").join("")).format("YYYY-MM-DDTHH:mm:ss");
+        taskObj.modifiedDate = moment.utc(taskObj.modifiedDate.split("  ").join("")).format("YYYY-MM-DDTHH:mm:ss");
+        taskObj._id = miscUtils.generateMongoID();
+        mongoClient.insertOne(strings.COLLECTIONS.TASKS, taskObj, inCB)
+      },function (e, r) {
+        console.log("e ",e)
+        console.log("IMPORT DONE!!");
+        return callback();
+
+      });
+    }
+  ],function (e, r) {
+    console.log("init complete")
+  })
+
+
 
 };
