@@ -81,6 +81,4 @@ Task.importTasks = function() {
     console.log("init complete")
   })
 
-
-
 };
