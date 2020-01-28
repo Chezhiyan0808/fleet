@@ -16,26 +16,15 @@ module.exports = function (server) {
     },
     {
       method: 'POST',
-      path: '/task/gettasks',
+      path: '/task/fibonacci-series',
       config: {
         tags: ['api'],
-        handler: controller.tasks.getTasks,
+        handler: controller.tasks.getFibanocciSeries,
         validate: {
-          payload: taskSchema.getTaskRequest
+          payload: taskSchema.getFibanocciSeries
         }
       }
-    },
-    {
-      method: 'POST',
-      path: '/task/updatetask',
-      config: {
-        tags: ['api'],
-        handler: controller.tasks.updateTask,
-        validate: {
-          payload: taskSchema.updateTaskRequest
-        }
-      }
-    },
+    }
   ];
 
   return routeTable;

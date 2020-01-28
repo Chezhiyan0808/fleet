@@ -9,8 +9,6 @@ const Inert = require('@hapi/inert');
 const server = new Hapi.Server(appConfig.server);
 
 let routes = require('./config/routes')(server);
-let mongo = require('./mongodb/mongo');
-let tasks = require('./model/tasks');
 
 const init = async () => {
   await server.register([
@@ -24,10 +22,8 @@ const init = async () => {
 
   await server.start();
   server.route(routes);
-  mongo.connect(function (e, r) {
-    //tasks.importTasks();
-    console.log('server running at: ' + server.info.uri);
-  });
+  console.log('server running at: ' + server.info.uri);
+
 };
 
 process.on('unhandledRejection', (err) => {
@@ -37,7 +33,6 @@ process.on('unhandledRejection', (err) => {
 
 init()
   .catch((err) => {
-
     console.error(err);
     process.exit(1);
   });

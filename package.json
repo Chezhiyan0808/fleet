@@ -10,9 +10,6 @@
     "confidence": "^4.0.1",
     "hapi-swagger": "^9.4.2",
     "lodash": "^4.17.11",
-    "moment": "^2.24.0",
-    "mongodb": "*",
-    "require-directory": "^2.1.1",
-    "uuid": "^3.3.2"
+    "require-directory": "^2.1.1"
   }
 }
