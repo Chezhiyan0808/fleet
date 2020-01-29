@@ -1,15 +1,29 @@
 {
   "name": "backend",
   "version": "0.0.1",
+  "main": "runserver.js",
+  "scripts": {
+    "start": "node runserver.js",
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
   "dependencies": {
     "@hapi/hapi": "^18.3.1",
     "@hapi/inert": "^5.2.0",
     "@hapi/joi": "^15.0.3",
     "@hapi/vision": "^5.5.2",
     "async": "^2.6.2",
+    "chai": "^4.2.0",
     "confidence": "^4.0.1",
     "hapi-swagger": "^9.4.2",
     "lodash": "^4.17.11",
+    "mocha": "^7.0.1",
     "require-directory": "^2.1.1"
-  }
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "description": "1) npm i\r 2) open http://localhost:3000 for api documentation",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
