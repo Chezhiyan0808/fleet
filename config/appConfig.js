@@ -7,7 +7,7 @@ let doc = {
   "$default": {
     server: {
       "host": "0.0.0.0",
-      "port": 3000,
+      "port": process.env.PORT || 5000,
       routes: {
         cors: true
       }
@@ -21,7 +21,7 @@ let doc = {
       basePath:"/"
     },
     defaultStorage: "FS",
-    baseServerUrl: "http://0.0.0.0:3000",
+    baseServerUrl: "http://0.0.0.0:5000",
   }
 };
 

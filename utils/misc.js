@@ -1,4 +1,4 @@
-
+const strings = require('../config/strings')
 let utils = {};
 
 
@@ -8,7 +8,15 @@ utils.generateFibanocciSeries = function (count, prime_only){
     let result_length = 0;
     while (result_length < count){
         let num = Math.round(Number((getY_1(index) - getY_2(index)) / Math.sqrt(5)));
-        if (!isFinite(num)) return result;
+        if (!isFinite(num)){
+            if (prime_only && result.length < count){
+                let higher_primes = JSON.parse(JSON.stringify(strings.HIGHER_PRIME))
+                let difference = count - result.length;
+                difference = higher_primes.slice(0,difference);
+                result = result.concat(difference)
+            }
+            return result;
+        }
         num = BigInt(num)
         index += 1;
         if (prime_only){
