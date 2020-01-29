@@ -6,7 +6,7 @@ let doc = {
   "dev": {},
   "$default": {
     server: {
-      "host": "localhost",
+      "host": "0.0.0.0",
       "port": 3000,
       routes: {
         cors: true
@@ -14,29 +14,14 @@ let doc = {
     },
     swaggerOptions: {
       info: {
-        'title': 'Fleet API Documentation',
+        'title': 'API Documentation',
         'version': '1'
       },
       documentationPath: "/",
       basePath:"/"
     },
     defaultStorage: "FS",
-    database: {
-      mongodb: {
-        url: "mongodb://localhost:27017",
-        dbName: "admin",
-        params: {
-          maxIdleTimeMS:  60 * 1000,
-          minPoolSize: 15,
-          poolSize: 30,
-          auto_reconnect : true,
-          socketOptions: {
-            keepAlive: 1, connectTimeoutMS: 60000
-          }
-        }
-      }
-    },
-    baseServerUrl: "http://localhost:3000",
+    baseServerUrl: "http://0.0.0.0:3000",
   }
 };
 

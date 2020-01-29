@@ -1,5 +1,5 @@
 {
-  "name": "fleet",
+  "name": "backend",
   "version": "0.0.1",
   "dependencies": {
     "@hapi/hapi": "^18.3.1",

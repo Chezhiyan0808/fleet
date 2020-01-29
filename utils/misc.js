@@ -10,7 +10,6 @@ utils.generateFibanocciSeries = function (count, prime_only){
         let num = Math.round(Number((getY_1(index) - getY_2(index)) / Math.sqrt(5)));
         if (!isFinite(num)) return result;
         num = BigInt(num)
-        console.log(num)
         index += 1;
         if (prime_only){
             if (isPrime(num)) {
